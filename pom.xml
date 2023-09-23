@@ -12,6 +12,7 @@
 
     <build>
         <plugins>
+
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -19,10 +20,22 @@
                 <configuration>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <webApp>
-                        <contextPath>/my-app</contextPath>
+                        <contextPath>/job</contextPath>
                     </webApp>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://localhost:8080/index.jsp</url>
+                    <server>localhost</server>
+                    <path></path>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 

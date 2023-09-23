@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee webapp_4_0.xsd"
          version="4.0">
     <servlet>
-        <servlet-name>first-servlet</servlet-name>
+        <servlet-name>FirstServlet</servlet-name>
         <servlet-class>servlets.MainServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>first-servlet</servlet-name>
-        <url-pattern>/my-servlet</url-pattern>
+        <servlet-name>FirstServlet</servlet-name>
+        <url-pattern>/employees</url-pattern>
     </servlet-mapping>
 </web-app>
