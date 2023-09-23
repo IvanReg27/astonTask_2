@@ -13,8 +13,8 @@
 <body>
 <h1>Testing JSP</h1>
 <p>
-  <%@ page import="java.util.Date, servlets.EmployeesServlet" %>
-  <% doGet testClass = new TestClass(); %>
+  <%@ page import="java.util.Date, test.TestClass" %>
+  <% TestClass testClass = new TestClass(); %>
   <%= testClass.getInfo() %>
 </p>
 </body>

@@ -16,7 +16,7 @@ public class MainServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.service(req, resp);
     }
-    @Override
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.getWriter().write("<HTML> <h1> Hello World </HTML> </h1>");
     }
