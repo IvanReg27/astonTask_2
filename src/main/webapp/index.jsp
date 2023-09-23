@@ -13,7 +13,9 @@
 <body>
 <h1>Testing JSP</h1>
 <p>
-  <%= new java.util.Date() %>
+  <%@ page import="java.util.Date, servlets.EmployeesServlet" %>
+  <% doGet testClass = new TestClass(); %>
+  <%= testClass.getInfo() %>
 </p>
 </body>
 </html>
