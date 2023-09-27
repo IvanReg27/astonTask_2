@@ -3,8 +3,10 @@ package dao;
 import model.User;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class EmployeeDAO {
+public class UserDAO {
     private String jdbcURL = "jdbc:postgresql://localhost:5432/public?useSSL=false";
     private String jdbcUsername = "postgres";
     private String jdbcPassword = "Jrheu666666";
@@ -101,5 +103,59 @@ public class EmployeeDAO {
         }
         return user;
     }
-}
+    public List<User> selectAllUsers() {
 
+        List<User> users = new ArrayList<>();
+
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
+            System.out.println(preparedStatement);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Long employeeId = rs.getLong("employeeId");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                String email = rs.getString("email");
+                String phoneNumber = rs.getString("phoneNumber");
+                Date hireDate = rs.getDate("hireDate");
+                String jobId = rs.getString("jobId");
+                Float salary = rs.getFloat("salary");
+                Float commissionPct = rs.getFloat("commissionPct");
+                Long managerId = rs.getLong("managerId");
+                Long departmentId = rs.getLong("departmentId");
+                users.add(new User(employeeId, firstName, lastName, email, phoneNumber, hireDate,
+                        jobId, salary, commissionPct, managerId, departmentId));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return users;
+    }
+    public boolean deleteUser(Long employeeId) throws SQLException {
+        boolean rowDeleted;
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
+            statement.setLong(1, employeeId);
+            rowDeleted = statement.executeUpdate() > 0;
+        }
+        return rowDeleted;
+    }
+    private void printSQLException(SQLException ex) {
+        for (Throwable e : ex) {
+            if (e instanceof SQLException) {
+                e.printStackTrace(System.err);
+                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+                System.err.println("Message: " + e.getMessage());
+                Throwable t = ex.getCause();
+                while (t != null) {
+                    System.out.println("Cause: " + t);
+                    t = t.getCause();
+                }
+            }
+        }
+    }
+}
