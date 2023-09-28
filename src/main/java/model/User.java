@@ -1,7 +1,5 @@
 package model;
 
-import java.sql.Date;
-
 public class User {
     protected int id;
     protected String name;

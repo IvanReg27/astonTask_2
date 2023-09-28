@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>User Management Application</title>
@@ -18,10 +21,9 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark"
-         style="background-color: tomato">
+         style="background-color: #7d7d79">
         <div>
-            <a href="https://www.javaguides.net" class="navbar-brand"> User
-                Management App </a>
+            <a href="https://github.com/IvanReg27" class="navbar-brand"> Java Rest API (Servlet+JDBC+MySQL) </a>
         </div>
 
         <ul class="navbar-nav">
@@ -67,7 +69,7 @@
                                 href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
                 </tr>
             </c:forEach>
-            <!-- } -->
+
             </tbody>
 
         </table>
