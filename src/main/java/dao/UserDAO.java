@@ -2,14 +2,17 @@ package dao;
 
 import model.User;
 
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class UserDAO {
-    private String jdbcURL = "jdbc:mysql://localhost:3306/demo";
-    private String jdbcUsername = "root";
-    private String jdbcPassword = "xxx";
+
+    String DB_USERNAME="db.jdbcUsername";
+    String DB_PASSWORD="db.jdbcPassword";
+    String DB_URL ="db.jdbcURL";
 
     private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country) VALUES "
             + " (?, ?, ?);";
@@ -22,14 +25,21 @@ public class UserDAO {
     protected Connection getConnection() {
         Connection connection = null;
         try {
+            Properties properties = new Properties();
+            InputStream inStream = new FileInputStream(new File("src\\main\\resources\\" +
+                    "db.properties"));
+            properties.load(inStream);
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+            connection = DriverManager.getConnection(properties.getProperty(DB_URL),
+                    properties.getProperty(DB_USERNAME) , properties.getProperty(DB_PASSWORD) );
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return connection;
     }
@@ -49,16 +59,12 @@ public class UserDAO {
     }
     public User selectUser(int id) {
         User user = null;
-        // Step 1: Establishing a Connection
         try (Connection connection = getConnection();
-             // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);) {
             preparedStatement.setInt(1, id);
             System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
 
-            // Step 4: Process the ResultSet object.
             while (rs.next()) {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
@@ -72,18 +78,13 @@ public class UserDAO {
     }
     public List<User> selectAllUsers() {
 
-        // using try-with-resources to avoid closing resources (boiler plate code)
         List<User> users = new ArrayList<>();
-        // Step 1: Establishing a Connection
         try (Connection connection = getConnection();
 
-             // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
             System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
 
-            // Step 4: Process the ResultSet object.
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");

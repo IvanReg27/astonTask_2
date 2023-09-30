@@ -10,10 +10,9 @@
 
     <packaging>war</packaging>
 
+    <!-- plugin for correct launch of Rest API -->
     <build>
         <plugins>
-
-            <!-- the servlet does not work without this plugin (tomcat7-maven-plugin) -->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>

@@ -10,16 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d40fc1d-42d4-45a5-96f2-2906294cb9e8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/opt/apache-tomcat-9.0.30/webapps/myservlet/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/connectTest/GetConnectionExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/connectDbTest/GetConnectionExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/connectTest/GetConnectionExample.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/web/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/web/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/user-form.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user-form.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/user-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user-list.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +64,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;11&quot;,
     &quot;js.buildTools.gulp.gulp_package_dir&quot;: &quot;&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/jetty-home-12.0.1&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Ivan/IdeaProjects/astonTask_2/src/main/resources&quot;,
     &quot;nodejs.jest.jest_package&quot;: &quot;&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
@@ -78,6 +74,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ivan\IdeaProjects\astonTask_2\src\main\resources" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Ivan\IdeaProjects\astonTask_2\src\main\webapp\WEB-INF\lib" />
       <recent name="C:\Users\Ivan\IdeaProjects\astonTask_2\src\main\webapp" />
@@ -92,11 +91,11 @@
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.13">
     <configuration name="GetConnectionExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="connectTest.GetConnectionExample" />
+      <option name="MAIN_CLASS_NAME" value="connectDbTest.GetConnectionExample" />
       <module name="astonTask_2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="connectTest.*" />
+          <option name="PATTERN" value="connectDbTest.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -224,7 +223,9 @@
       <workItem from="1695823631332" duration="254000" />
       <workItem from="1695825551693" duration="4891000" />
       <workItem from="1695830464269" duration="39000" />
-      <workItem from="1695886695024" duration="7295000" />
+      <workItem from="1695886695024" duration="7894000" />
+      <workItem from="1695966453236" duration="2776000" />
+      <workItem from="1696064608512" duration="3990000" />
     </task>
     <servers />
   </component>
