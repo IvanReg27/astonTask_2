@@ -1,6 +1,7 @@
 package dao;
 
 import model.City;
+import model.Person;
 import model.User;
 
 import java.io.*;
@@ -20,6 +21,7 @@ public class UserDAO {
     private static final String SELECT_USER_BY_ID = "select id,name,email,country,cities_id from users where id =?";
     private static final String SELECT_ALL_USERS = "select * from users";
     private static final String SELECT_ALL_CITIES = "select * from cities";
+    private static final String SELECT_ALL_PERSON = "select * from person";
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =?, cities_id =? where id = ?;";
 
@@ -121,6 +123,26 @@ public class UserDAO {
             printSQLException(e);
         }
         return cities;
+    }
+    public List<Person> selectAllPerson() {
+
+        List<Person> person = new ArrayList<>();
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_PERSON);) {
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                int user_id = rs.getInt("user_id");
+                int city_id = rs.getInt("city_id");
+                person.add(new Person(id, user_id, city_id));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return person;
     }
     public boolean deleteUser(int id) throws SQLException {
         boolean rowDeleted;

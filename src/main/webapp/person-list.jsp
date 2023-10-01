@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: Ivan
   Date: 01.10.2023
-  Time: 20:55
+  Time: 21:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,7 +10,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-  <title>City Management Application</title>
+  <title>Person Management Application</title>
   <link rel="stylesheet"
         href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -36,24 +36,26 @@
 <div class="row">
 
   <div class="container">
-    <h3 class="text-center">List of Cities</h3>
+    <h3 class="text-center">List of Persons</h3>
     <hr>
     <br>
     <table class="table table-bordered">
       <thead>
       <tr>
         <th>ID</th>
-        <th>City</th>
+        <th>User_Id</th>
+        <th>City_Id</th>
       </tr>
       </thead>
       <tbody>
 
-      <c:forEach var="city" items="${listCity}">
+      <c:forEach var="person" items="${listPerson}">
 
-        <tr>
-          <td><c:out value="${city.id}" /></td>
-          <td><c:out value="${city.city}" /></td>
-      </c:forEach>
+      <tr>
+        <td><c:out value="${person.id}" /></td>
+        <td><c:out value="${person.user_id}" /></td>
+        <td><c:out value="${person.city_id}" /></td>
+        </c:forEach>
 
       </tbody>
 
