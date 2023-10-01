@@ -76,6 +76,12 @@
                                                            name="country">
                     </fieldset>
 
+                        <fieldset class="form-group">
+                            <label>Cities_id</label> <input type="text"
+                                                               value="<c:out value='${user.cities_id}' />" class="form-control"
+                                                               name="cities_id">
+                        </fieldset>
+
                     <button type="submit" class="btn btn-success">Save</button>
                 </form>
         </div>

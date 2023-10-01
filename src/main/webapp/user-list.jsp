@@ -27,7 +27,7 @@
         </div>
 
         <ul class="navbar-nav">
-            <li><a href="<%=request.getContextPath()%>/list"
+            <li><a href="<%=request.getContextPath()%>/listCity"
                    class="nav-link">Users</a></li>
         </ul>
     </nav>
@@ -52,6 +52,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Country</th>
+                <th>Cities_id</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -64,6 +65,7 @@
                     <td><c:out value="${user.name}" /></td>
                     <td><c:out value="${user.email}" /></td>
                     <td><c:out value="${user.country}" /></td>
+                    <td><c:out value="${user.cities_id}" /></td>
                     <td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp; <a
                                 href="delete?id=<c:out value='${user.id}' />">Delete</a></td>

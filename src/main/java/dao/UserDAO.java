@@ -1,5 +1,6 @@
 package dao;
 
+import model.City;
 import model.User;
 
 import java.io.*;
@@ -14,12 +15,14 @@ public class UserDAO {
     String DB_PASSWORD="db.jdbcPassword";
     String DB_URL ="db.jdbcURL";
 
-    private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country) VALUES "
-            + " (?, ?, ?);";
-    private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id =?";
+    private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country, cities_id) VALUES "
+            + " (?, ?, ?, ?);";
+    private static final String SELECT_USER_BY_ID = "select id,name,email,country,cities_id from users where id =?";
     private static final String SELECT_ALL_USERS = "select * from users";
+    private static final String SELECT_ALL_CITIES = "select * from cities";
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
-    private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
+    private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =?, cities_id =? where id = ?;";
+
     public UserDAO() {
     }
     protected Connection getConnection() {
@@ -51,6 +54,7 @@ public class UserDAO {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getCountry());
+            preparedStatement.setInt(4, user.getCities_id());
             System.out.println(preparedStatement);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -69,7 +73,8 @@ public class UserDAO {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String country = rs.getString("country");
-                user = new User(id, name, email, country);
+                int cities_id = rs.getInt("cities_id");
+                user = new User(id, name, email, country, cities_id);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -90,12 +95,32 @@ public class UserDAO {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String country = rs.getString("country");
-                users.add(new User(id, name, email, country));
+                int cities_id = rs.getInt("cities_id");
+                users.add(new User(id, name, email, country, cities_id));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
         return users;
+    }
+    public List<City> selectAllCities() {
+
+        List<City> cities = new ArrayList<>();
+        try (Connection connection = getConnection();
+
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_CITIES);) {
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String city = rs.getString("city");
+                cities.add(new City(id, city));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return cities;
     }
     public boolean deleteUser(int id) throws SQLException {
         boolean rowDeleted;
@@ -113,7 +138,8 @@ public class UserDAO {
             statement.setString(1, user.getName());
             statement.setString(2, user.getEmail());
             statement.setString(3, user.getCountry());
-            statement.setInt(4, user.getId());
+            statement.setInt(4, user.getCities_id());
+            statement.setInt(5, user.getId());
 
             rowUpdated = statement.executeUpdate() > 0;
         }
