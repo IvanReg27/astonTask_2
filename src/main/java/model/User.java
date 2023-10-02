@@ -1,11 +1,14 @@
 package model;
 
+import java.util.List;
+
 public class User {
     protected int id;
     protected String name;
     protected String email;
     protected String country;
     protected int cities_id;
+    protected List<Person> persons;
 
     public User() {
     }

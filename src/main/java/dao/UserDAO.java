@@ -1,21 +1,18 @@
 package dao;
 
+import connectDB.ConnectionDB;
 import model.City;
 import model.Person;
 import model.User;
 
-import java.io.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
-public class UserDAO {
-
-    String DB_USERNAME="db.jdbcUsername";
-    String DB_PASSWORD="db.jdbcPassword";
-    String DB_URL ="db.jdbcURL";
-
+public class UserDAO extends ConnectionDB {
     private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country, cities_id) VALUES "
             + " (?, ?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "select id,name,email,country,cities_id from users where id =?";
@@ -25,32 +22,8 @@ public class UserDAO {
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =?, cities_id =? where id = ?;";
 
-    public UserDAO() {
-    }
-    protected Connection getConnection() {
-        Connection connection = null;
-        try {
-            Properties properties = new Properties();
-            InputStream inStream = new FileInputStream(new File("src\\main\\resources\\" +
-                    "db.properties"));
-            properties.load(inStream);
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(properties.getProperty(DB_URL),
-                    properties.getProperty(DB_USERNAME) , properties.getProperty(DB_PASSWORD) );
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return connection;
-    }
     public void insertUser(User user) throws SQLException {
         System.out.println(INSERT_USERS_SQL);
-        // try-with-resource statement will auto close the connection.
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
             preparedStatement.setString(1, user.getName());

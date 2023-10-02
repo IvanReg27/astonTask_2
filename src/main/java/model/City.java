@@ -5,6 +5,8 @@ import java.util.List;
 public class City {
     protected int id;
     protected String city;
+    protected List<User> users;
+    protected List<Person> persons;
 
     public City() {
     }
