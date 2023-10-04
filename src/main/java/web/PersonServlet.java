@@ -1,7 +1,6 @@
 package web;
 
 import dao.UserDAO;
-import model.City;
 import model.Person;
 
 import javax.servlet.RequestDispatcher;
