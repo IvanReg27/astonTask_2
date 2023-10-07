@@ -23,7 +23,7 @@ public class ConnectionDB {
             properties.load(inStream);
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(properties.getProperty(DB_URL),
-                    properties.getProperty(DB_USERNAME) , properties.getProperty(DB_PASSWORD) );
+                    properties.getProperty(DB_USERNAME), properties.getProperty(DB_PASSWORD));
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
