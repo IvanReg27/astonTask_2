@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO extends ConnectionDB {
+
     private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country, cities_id) VALUES "
             + " (?, ?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "select id,name,email,country,cities_id from users where id =?";
