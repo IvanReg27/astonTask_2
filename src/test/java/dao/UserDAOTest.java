@@ -6,8 +6,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import java.sql.SQLException;
@@ -15,10 +13,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Testcontainers
 class UserDAOTest {
 
-    @Container
     static MySQLContainer mysql = new MySQLContainer<>(DockerImageName.parse("mysql:5.7.34"));
 
     UserDAO userDAO;
@@ -33,11 +29,15 @@ class UserDAOTest {
         mysql.stop();
     }
 
-    @BeforeEach
-    void setUp() {
-        userDAO = new UserDAO(mysql.getJdbcUrl(), mysql.getUsername(), mysql.getPassword());
-        userDAO.selectAllUsers();
-    }
+//    @BeforeEach
+//    void setUp() {
+//        DBConnectionProvider connectionProvider = new DBConnectionProvider(
+//                mysql.getJdbcUrl(),
+//                mysql.getUsername(),
+//                mysql.getPassword()
+//        );
+//        userDAO = new UserDAO(connectionProvider);
+//    }
 
     @Test
     void shouldGetUsers() throws SQLException {
