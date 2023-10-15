@@ -1,8 +1,8 @@
 CREATE TABLE my_table (
                           id INT PRIMARY KEY,
-                          name VARCHAR(255),
-                          email VARCHAR(255),
-                          country VARCHAR(255),
+                          name VARCHAR(120),
+                          email VARCHAR(220),
+                          country VARCHAR(120),
                           cities_id INT
 );
 

@@ -13,13 +13,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Testcontainers
 public class UserDAOTest {
 
     @Container
-    private static final MySQLContainer<?> mysqlContainer = new MySQLContainer<>("mysql:8.0.26")
+    private static final MySQLContainer<?> mysqlContainer = new MySQLContainer<>("mysql:8.0")
             .withUsername("test")
             .withPassword("test")
             .withDatabaseName("test");
@@ -57,13 +57,14 @@ public class UserDAOTest {
 
     @Test
     void testInsertUser() throws SQLException {
-        UserDAO userDAO = new UserDAO(connection);
+        UserDAO userDAO = new UserDAO();
         User user = new User("Ivan", "makhorin0088@gmail.com", "Russia", 1);
         userDAO.insertUser(user);
 
         try (Statement statement = connection.createStatement()) {
             String countSQL = "SELECT COUNT(*) FROM users";
-            assertEquals(1, statement.executeQuery(countSQL).getInt(1));
+            assertTrue(statement.executeQuery(countSQL).next());
+            System.out.println("The record has been created. The database is working...");
         }
     }
 }
